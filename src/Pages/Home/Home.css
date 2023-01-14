@@ -1,0 +1,11 @@
+.home{
+    background-image: url("../../../public/background/bigcloud.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+}
+.dark-background-blur{
+    background: linear-gradient(0deg, rgba(10,10,14,1) 0%, rgba(35,36,47,0.75) 100%);
+    backdrop-filter: blur(10px);
+}

@@ -1,0 +1,15 @@
+.bg-neutral-25{
+    background-color: rgba(82, 11, 1, 0.25);
+}
+
+.bg-neutral-50{
+    background-color: rgba(82, 11, 1, 0.5);
+}
+
+.bg-neutral-75{
+    background-color: rgba(82, 11, 1, 0.5);
+}
+
+.bg-neutral{
+    background-color: rgba(82, 11, 1, 1);
+}
