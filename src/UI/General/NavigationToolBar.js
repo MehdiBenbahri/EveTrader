@@ -7,49 +7,48 @@ function Header({menuOpen, handleOpen, btnPopOutTiming = 0}) {
 
     const [menuItemsShowed, setMenuItemsShowed] = useState([]);
 
-    const menuItems = [
-        (
-            <Button key={"navigation-btn-" + 0} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
-                <Typography variant={"overline"}>
-                    Home
-                </Typography>
-            </Button>
-        ),
-        (
-            <Button key={"navigation-btn-" + 1} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
-                <Typography variant={"overline"}>
-                    Item 1
-                </Typography>
-            </Button>
-        ),
-        (
-            <Button key={"navigation-btn-" + 2} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
-                <Typography variant={"overline"}>
-                    Item 2
-                </Typography>
-            </Button>
-        ),
-        (
-            <Button key={"navigation-btn-" + 3} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
-                <Typography variant={"overline"}>
-                    Item 3
-                </Typography>
-            </Button>
-        ),
-        (
-            <Button key={"navigation-btn-" + 4} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
-                <Typography variant={"overline"}>
-                    Item 4
-                </Typography>
-            </Button>
-        ),
-    ]
-
     useEffect(() => {
+        const menuItems = [
+            (
+                <Button key={"navigation-btn-" + 0} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
+                    <Typography variant={"overline"}>
+                        Home
+                    </Typography>
+                </Button>
+            ),
+            (
+                <Button key={"navigation-btn-" + 1} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
+                    <Typography variant={"overline"}>
+                        Item 1
+                    </Typography>
+                </Button>
+            ),
+            (
+                <Button key={"navigation-btn-" + 2} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
+                    <Typography variant={"overline"}>
+                        Item 2
+                    </Typography>
+                </Button>
+            ),
+            (
+                <Button key={"navigation-btn-" + 3} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
+                    <Typography variant={"overline"}>
+                        Item 3
+                    </Typography>
+                </Button>
+            ),
+            (
+                <Button key={"navigation-btn-" + 4} color={"inherit"} className={"mx-2 animate__animated animate__fadeIn animate__faster"}>
+                    <Typography variant={"overline"}>
+                        Item 4
+                    </Typography>
+                </Button>
+            ),
+        ]
         setTimeout(() => {
             setMenuItemsShowed([...menuItemsShowed, menuItems[menuItemsShowed.length]]);
         },btnPopOutTiming + (menuItemsShowed.length * 2))
-    }, [menuItemsShowed])
+    }, [menuItemsShowed,btnPopOutTiming])
 
     return (
         <Box
@@ -95,6 +94,9 @@ function Header({menuOpen, handleOpen, btnPopOutTiming = 0}) {
                         </Tooltip>
                     </MenuItem>
                 </Select>
+                <Button href={"http://localhost:8080/auth/sso"} color={"inherit"}>
+                    <img alt={"eve-sso logo"} src={"https://web.ccpgamescdn.com/eveonlineassets/developers/eve-sso-login-black-small.png"} />
+                </Button>
             </Box>
         </Box>
     )
