@@ -15,7 +15,7 @@ function Register() {
         addItem('player_id',urlParams.get('player_id'));
         setTimeout(() => {
             window.location = '/'
-        },2500)
+        },1500)
     })
 
     return (
@@ -24,8 +24,7 @@ function Register() {
             {
                 urlParams.get('access_token') ?
                     (
-                        <Box className={"rounded transparent-card d-flex justify-content-center align-items-center"}
-                             sx={{width: "50vw", height: "50vh", marginTop: "12.5rem"}}>
+                        <Box className={"d-flex justify-content-center align-items-center transparent-card p-3 rounded"}>
                             <Typography className={"text-light"}>
                                 Chargement...
                             </Typography>

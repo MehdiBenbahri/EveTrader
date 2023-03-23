@@ -8,6 +8,7 @@ import NotFound from "./Pages/Error/NotFound";
 import Register from "./Pages/Register/Register";
 import {checkApiAccess} from "./Services/LocaleStorage";
 import {refreshToken} from "./Services/AuthService";
+import Scheduler from "./Pages/Mining/Scheduler";
 function App() {
 
     if (!checkApiAccess()) {
@@ -20,6 +21,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/home" element={<Home/>}/>
+                <Route path="/scheduler" element={<Scheduler/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path='*' element={<NotFound/>}/>
             </Routes>

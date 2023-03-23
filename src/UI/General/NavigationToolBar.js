@@ -1,13 +1,15 @@
-import {Box, Button, IconButton, MenuItem, Select, Tooltip, Typography} from "@mui/material";
+import {Box, Button, Grow, IconButton, MenuItem, Select, Tooltip, Typography} from "@mui/material";
 import "./NavigationToolBar.css"
 import MenuIcon from '@mui/icons-material/Menu';
 import {useEffect, useState} from "react";
-import {getItem} from "../../Services/LocaleStorage";
+import {getItem, disconnect} from "../../Services/LocaleStorage";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Header({handleOpen, btnPopOutTiming = 0}) {
 
     const [menuItemsShowed, setMenuItemsShowed] = useState([]);
+    const [openUserMenu, setOpenUserMenu] = useState(false);
 
     useEffect(() => {
         const menuItems = [
@@ -106,24 +108,59 @@ function Header({handleOpen, btnPopOutTiming = 0}) {
                 {
                     getItem('name') && getItem('player_id') && getItem('access_token') ?
                         (
-                            <Button className={"mx-1 text-light"}
-                                    color={"inherit"}
-                            >
-                                <img alt={"eve-sso logo"}
-                                     className={"ms-2 rounded"}
-                                     width={"30rem"}
-                                     src={`https://images.evetech.net/characters/${getItem('player_id')}/portrait`}/>
-                                <Typography className={"ms-2"}
-                                            variant={"caption"}
-                                            color={"inherit"}
+                            <>
+                                <Button className={"mx-1 text-light"}
+                                        color={"inherit"}
+                                        onClick={
+                                            () => {
+                                                setOpenUserMenu(!openUserMenu);
+                                            }
+                                        }
                                 >
-                                    {getItem('name')}
-                                </Typography>
-                                <ArrowDropDownIcon></ArrowDropDownIcon>
-                            </Button>
+                                    <img alt={"eve-sso logo"}
+                                         className={"ms-2 rounded"}
+                                         width={"30rem"}
+                                         src={`https://images.evetech.net/characters/${getItem('player_id')}/portrait`}/>
+                                    <Typography className={"ms-2"}
+                                                variant={"caption"}
+                                                color={"inherit"}
+                                    >
+                                        {getItem('name')}
+                                    </Typography>
+                                    <ArrowDropDownIcon></ArrowDropDownIcon>
+                                </Button>
+                                <Grow orientation="horizontal"
+                                      in={openUserMenu}>
+                                    <Box
+                                        className={"position-absolute transparent-card rounded d-flex flex-column justify-content-center align-items-center"}
+                                        sx={{
+                                            width: "11rem",
+                                            height: "3rem",
+                                            top: "4.5rem",
+                                            right: "0.5rem",
+                                        }}>
+                                        <Button
+                                            className={"text-light d-flex justify-content-evenly align-items-center w-100"}
+                                            size={"small"}
+                                            onClick={
+                                                () => {
+                                                    setOpenUserMenu(false);
+                                                    disconnect();
+                                                }
+                                            }
+                                            color={"inherit"}>
+                                            <Typography variant={"overline"} className={"text-light me-2"}>
+                                                Logoff
+                                            </Typography>
+                                            <LogoutIcon></LogoutIcon>
+                                        </Button>
+                                    </Box>
+                                </Grow>
+                            </>
                         ) :
                         (
-                            <Button href={process.env.REACT_APP_SERVER_DOMAIN + "/auth/sso"} color={"inherit"}>
+                            <Button href={process.env.REACT_APP_SERVER_DOMAIN + "/auth/sso"} className={"text-light"}
+                                    color={"inherit"}>
                                 <img alt={"eve-sso logo"}
                                      src={"https://web.ccpgamescdn.com/eveonlineassets/developers/eve-sso-login-black-small.png"}/>
                             </Button>
